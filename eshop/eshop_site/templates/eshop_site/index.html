@@ -1,0 +1,44 @@
+{% extends 'eshop_site/base.html' %}
+
+{% block title %}Главная страница магазина{% endblock %}
+
+
+{% block body %}
+	<h1 class="mb-5">Магазин</h1>
+
+<div class="card-deck row-cols-1 row-cols-md-3">
+
+{% for product in products %}
+ <div class="col mb-5">
+  <div class="card"> 
+
+    <img src="..." class="card-img-top" alt="типа картинка здесь. ХЗ как добавить правльно" style="text-align: center;">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center;">{{ product.title_product }}</h5>
+          <p class="card-text" style="text-align: center;">{{ product.description_product }}</p>
+	     Цена: {{ product.price_product }} грн  <a href=" {% url 'product_page' slug=product.slug_product %} " class="btn btn-primary ml-4">Просмотреть</a></p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Рейтинг товара <b>{{ product.raiting_product }}</b> 
+
+      	{% if product.raiting_product == 5 %} звёзд
+      	{% elif product.raiting_product == 4 %} звезды
+      	{% elif product.raiting_product == 3 %} звезды
+      	{% elif product.raiting_product == 2 %} звезды
+      	{% elif product.raiting_product == 1 %} звезда
+      	{% else %} еще нет голосов
+      	{% endif %}
+      	
+
+
+      </small>
+    </div>
+
+  </div>
+ </div>
+{% endfor %}
+ </div>
+
+	
+
+{% endblock %}

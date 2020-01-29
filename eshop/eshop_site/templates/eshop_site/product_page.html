@@ -1,0 +1,39 @@
+{% extends 'eshop_site/base.html' %}
+
+{% block title %} {{product.title_product}} {% endblock %}
+
+{% block body %}  
+
+<div class="card mb-3 col-md-10" style="max-width: 100%;">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="..." class="card-img" alt="Здесь типа картинка" style="text-align: center;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title_product}}</h5>
+        <p class="card-text"><small class="text-muted">Рейтинг товара <b>{{ product.raiting_product }}</b> 
+
+      	{% if product.raiting_product == 5 %} звёзд
+      	{% elif product.raiting_product == 4 %} звезды
+      	{% elif product.raiting_product == 3 %} звезды
+      	{% elif product.raiting_product == 2 %} звезды
+      	{% elif product.raiting_product == 1 %} звезда
+      	{% else %} еще нет голосов
+      	{% endif %}
+
+      	</small></p>
+        <p class="card-text">
+
+        	{{ product.description_product }}
+        	<p>
+        	Цена: {{ product.price_product }} грн  <a href="#" class="btn btn-primary ml-4">Купить</a>
+       	    </p>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
