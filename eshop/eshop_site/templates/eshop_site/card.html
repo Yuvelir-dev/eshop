@@ -1,0 +1,32 @@
+{% extends 'eshop_site/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Корзина пользователя {{card.user_name}} {% endblock %}
+
+{% block body %} 
+
+<div> <h3>
+  Корзина пользователя:
+  <small class="text-muted">{{card.user_name}}</small>
+</h3>
+</div>
+{% if len(card.id) >= 1 %} 
+
+<div class="card">
+ 
+  <div class="card-header">
+   {{ card.title_product}}
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{card.user_name}}</li>
+    <li class="list-group-item">Цена за единицу: {{ card.price_product}} грн</li>
+    <li class="list-group-item">Общая стоимость: {{ card.price_product}} грн</li>
+  </ul>
+
+</div>
+
+
+{% endif %}
+<h2>Корзина пуста!</h2>>
+{% csrf_token %}
+
+{% endblock %}

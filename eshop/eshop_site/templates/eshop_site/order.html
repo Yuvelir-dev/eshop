@@ -1,0 +1,89 @@
+{% extends 'eshop_site/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Корзина пользователя {{card.user_name}} {% endblock %}
+
+{% block body %} 
+
+<div> <h3>
+  Корзина пользователя:
+  <small class="text-muted">{{user.username}}</small>
+</h3>
+
+
+
+
+
+{% for i in card%}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{i.product.image.url}}" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{i.title_product}}</h5>
+        
+        <p class="card-text">Цена: {{i.price_product}} грн<small class="text-muted"><label for="validationCustom01">Колличество <input type="text" size="2" class="ml-2" value="{{i.count}} "></small></p></label>
+      
+      </div>{% csrf_token %}
+      <a class="btn btn-primary ml-5 col-md-6" onclick="hz({{i.id}})">Удалить</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+<div class="col-md-12 mb-5">
+      <label for="validationCustom04" id="qq">Выберите способ доствки:</label>
+
+
+
+<!-- 
+      <select class="custom-select" id="validationCustom04" required>
+        
+          {% for i in delivery %}
+        <option> <div id="delivery_method">{{i.delivery_method}}</div> <div id="delivery_cost">Стоимость: {{i.delivery_cost}} грн</div></option>
+        {% endfor %}
+      </select> -->
+
+<select class="mdb-select md-form" id="delivery_method" name="delivery_method">
+    {% for i in delivery %}
+    <option value="{{ i.id }}"
+    {% if i.delivery_method == delivery_method %} selected="selected"{% endif %}
+    ><div id="delivery_method">{{i.delivery_method}}</div> 
+    <div id="delivery_cost">Стоимость: {{i.delivery_cost}} грн</div>
+    </option>
+    {% endfor %}
+</select>
+
+
+
+
+     
+    </div>
+
+{% csrf_token %}
+    <a class="btn btn-primary mb-5 col-md-12" onclick="add_order()">Оформить заказ</a>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block add_script %}
+{% load static %}
+
+<script type="text/javascript" src="{% static 'js/order.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/deletepr.js' %}"></script>
+<script type="text/javascript">var stripe = Stripe('pk_test_SOd4jTx6wr0RiRzL2YmHgK4i00qgI6HrQr');</script>
+
+{% endblock %}

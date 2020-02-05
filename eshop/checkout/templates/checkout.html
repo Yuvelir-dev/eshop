@@ -1,0 +1,58 @@
+{% extends  'base.html' %}
+{% load crispy_forms_tags %}
+{% block add_script %}
+<script type="text/javascript">var stripe = Stripe('pk_test_SOd4jTx6wr0RiRzL2YmHgK4i00qgI6HrQr');</script>
+<script type="text/javascript">var elements = stripe.elements();</script>
+
+{% endblock %}
+{% block main %}
+
+<div class="row ml-5">
+<div class="col-sm-6 col-sm-offset-3">
+<form action="" class="form" method="post" id="payment-form">{% csrf_token %}
+  
+ 	<div id="card-element">
+	      <!-- A Stripe Element will be inserted here. -->
+	    <div class="form-row">
+	      <label>
+	      	<span>
+	      		Номер карты
+	      	</span>
+	      	<input type="text" size="20" data-stripe="number">
+	      </label>
+	    </div>
+	    <div class="form-row">
+	      <label>
+	      	<span>
+	      		Срок действия
+	      	</span>
+	      	<input type="text" size="2" data-stripe="exp_month">
+	      	<span>
+	      		/
+	      	</span>
+	      	<input type="text" size="2" data-stripe="exp_year">
+	      </label>
+	    </div>
+	    <div class="form-row">
+	      <label>
+	      	<span>
+	      		CVC
+	      	</span>
+	      	<input type="text" size="4" data-stripe="cvc">
+	      </label>
+	    </div>
+	      
+	</div>
+
+
+<input type="submit" class="submit" value="Оплатить">
+	    <!-- Used to display form errors. -->
+	    <div id="card-errors" role="alert"></div>
+
+
+  
+</form>
+</div>
+</div> 
+{% endblock %}
+

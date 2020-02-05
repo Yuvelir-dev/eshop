@@ -1,0 +1,16 @@
+{% extends 'eshop_site/base.html' %}
+
+{% block title %} Категории {% endblock %}
+
+{% block body %}  
+	
+	{% for cat in categories %}
+
+		<p>
+			{{cat.title_cat}} + 5
+			<br>
+		</p>
+		<br>
+	{% endfor %}
+
+{% endblock %}

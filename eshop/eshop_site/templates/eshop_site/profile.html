@@ -1,0 +1,41 @@
+{% extends 'eshop_site/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Профиль: {{user.username}} {% endblock %}
+
+{% block body %} 
+
+<h3>
+  Страница покупателя: 
+  <small class="text-muted">{{user.username}}</small>
+
+</h3>
+
+
+<table class="table mt-5">
+ 
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Название товара</th>
+      <th scope="col">Колличество</th>
+      <th scope="col">Метод доставки и стоимость</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for order in card %}
+    <tr>
+     
+      <th scope="row">{{order.id}}</th>
+      <td>{{order.title_product}}</td>
+      <td>{{order.count}}</td>
+      <td>{{order.delivery_method}}</td>
+     
+    </tr>
+     {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock %}

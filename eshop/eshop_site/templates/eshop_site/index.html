@@ -11,8 +11,7 @@
 {% for product in products %}
  <div class="col mb-5">
   <div class="card"> 
-
-    <img src="..." class="card-img-top" alt="типа картинка здесь. ХЗ как добавить правльно" style="text-align: center;">
+ <img src="{{ product.image.url}}" class="card-img-top" alt="типа картинка здесь. ХЗ как добавить правльно" style="text-align: center;">
     <div class="card-body">
       <h5 class="card-title" style="text-align: center;">{{ product.title_product }}</h5>
           <p class="card-text" style="text-align: center;">{{ product.description_product }}</p>
@@ -39,6 +38,8 @@
 {% endfor %}
  </div>
 
-	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
 {% endblock %}
